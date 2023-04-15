@@ -6,7 +6,7 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
-/* salt => extra data that gets hashed along with the password. 
+/* salt => extra data that gets hashed along with the password.
    saltRounds => number of times we will hash the password and salt.
 */
 const saltRounds = 10;
@@ -14,7 +14,7 @@ const saltRounds = 10;
 let AccountModel = {};
 
 /* username => unique string of alphanumeric characters
-   password => hashed version of the password 
+   password => hashed version of the password
    createdDate => date of account creation
 */
 const AccountSchema = new mongoose.Schema({
@@ -53,8 +53,8 @@ AccountSchema.statics.generateHash = (password) => bcrypt.hash(password, saltRou
 */
 AccountSchema.statics.authenticate = async (username, password, callback) => {
   try {
-    const doc = await AccountModel.findOne({username}).exec();
-    if(!doc) {
+    const doc = await AccountModel.findOne({ username }).exec();
+    if (!doc) {
       return callback();
     }
 
