@@ -1,15 +1,10 @@
-/* Takes in an error message. Sets the error message up in html, and
-   displays it to the user. Will be hidden by other events that could
-   end in an error.
-*/
+// displays error message
 const handleError = (message) => {
   document.getElementById('errorMessage').textContent = message;
   document.getElementById('domoMessage').classList.remove('hidden');
 };
 
-/* Sends post requests to the server using fetch. Will look for various
-   entries in the response JSON object, and will handle them appropriately.
-*/
+// sends post and then reacts accordingly based on response
 const sendPost = async (url, data) => {
   const response = await fetch(url, {
     method: 'POST',
@@ -31,19 +26,17 @@ const sendPost = async (url, data) => {
   }
 };
 
-/* Entry point of our client code. Runs when window.onload fires.
-   Sets up the event listeners for each form across the whole app.
-*/
+// sets up event listeners
 const init = () => {
   const signupForm = document.getElementById('signupForm');
   const loginForm = document.getElementById('loginForm');
   const domoForm = document.getElementById('domoForm');
   const domoMessage = document.getElementById('domoMessage');
 
-  /* If this page has the signupForm, add it's submit event listener.
-     Event listener will grab the username, password, and password2
-     from the form, validate everything is correct, and then will
-     use sendPost to send the data to the server.
+  /* page has signUpForm = add submit evLis
+     evLis grabs username, password, and password2
+    no exist => throw error
+     else => uses sendPost
   */
   if(signupForm) {
     signupForm.addEventListener('submit', (e) => {
@@ -69,10 +62,10 @@ const init = () => {
     });
   }
 
-  /* If this page has the loginForm, add it's submit event listener.
-     Event listener will grab the username, password, from the form, 
-     validate both values have been entered, and will use sendPost 
-     to send the data to the server.
+  /* page has loginForm = add submit evLis
+     evLis grabs username + password
+     no exist => throw error
+     else => uses sendPost
   */
   if(loginForm) {
     loginForm.addEventListener('submit', (e) => {
@@ -92,10 +85,10 @@ const init = () => {
     });
   }
 
-  /* If this page has the domoForm, add it's submit event listener.
-     Event listener will grab the domo name and the domo age from
-     the form. It will throw an error if one or both are missing.
-     Otherwise, it will send the request to the server.
+  /* page has signUpForm = add submit evLis
+     evLIs grabs domo name / age
+     no exist => throw error
+     else => uses sendPost
   */
   if(domoForm) {
     domoForm.addEventListener('submit', (e) => {
@@ -116,5 +109,4 @@ const init = () => {
   }
 };
 
-// Call init when the window loads.
 window.onload = init;
