@@ -31,11 +31,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(session({
-    key: 'sessionID',
-    secret: 'Domo Arigato',
-    resave: false,
-    saveUninitialized: false
-}))
+  key: 'sessionID',
+  secret: 'Domo Arigato',
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
 app.set('view engine', 'handlebars');
